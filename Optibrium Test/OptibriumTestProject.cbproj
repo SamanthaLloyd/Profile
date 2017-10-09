@@ -105,6 +105,7 @@
         <_TCHARMapping>char</_TCHARMapping>
         <UsePackages>false</UsePackages>
         <LinkPackageStatics>rtl.lib;fmx.lib</LinkPackageStatics>
+        <DynamicRTL>false</DynamicRTL>
     </PropertyGroup>
     <PropertyGroup Condition="'$(Cfg_2)'!=''">
         <Defines>NDEBUG;$(Defines)</Defines>
