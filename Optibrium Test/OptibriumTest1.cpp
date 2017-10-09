@@ -18,7 +18,7 @@ __fastcall TTestForm::TTestForm(TComponent* Owner)
 //---------------------------------------------------------------------------
 void __fastcall TTestForm::PopulateSourceDataGrids()
 {
-	//Populating the 4 grids
+	//Populating the grids
 
 	// Grid 1
 	DataGrid1->Model->RowCount = 4;
@@ -84,10 +84,10 @@ void __fastcall TTestForm::PopulateSourceDataGrids()
 	DataGrid2->Model->Cells[2][3] = "290";
 
 }
-
-
+//---------------------------------------------------------------------------
 void __fastcall TTestForm::LoadTable( TStringGrid *Grid, TDataTable *Table)
 {
+	// Loads the contents of Grid into Table
 	Table->Clear();
 
 	for( int Row = 0 ; Row < Grid->Model->RowCount; Row++ )
@@ -103,30 +103,17 @@ void __fastcall TTestForm::LoadTable( TStringGrid *Grid, TDataTable *Table)
 		//Add the row to the table
 		Table->Add( RowContainer );
 		}
-
-	int Lyssa = Table->RowCount();
-	Lyssa++;
 }
 //---------------------------------------------------------------------------
-
-
-void __fastcall TTestForm::OutputGrid1ButtonClick(TObject *Sender)
-{
-	TDataTable Grid1Data;
-	LoadTable( DataGrid1, &Grid1Data );
-	PopulateOutputGrid( OutputGrid, &Grid1Data );
-
-}
-
 void __fastcall TTestForm::PopulateOutputGrid( TStringGrid *OutputGrid, TDataTable *OutputTable )
 {
 	// clear the current output
 	OutputGrid->ClearColumns();
 
+	// Make sure the model is the right size
 	OutputGrid->Model->RowCount = OutputTable->RowCount();
 
 	// Loop through the data source
-  //	for( int i = 0; i < OutputTable->RowCount(); i++ )
     for( int i = OutputTable->RowCount()-1; i >= 0 ; i-- )
 		{
 		// Get the row
@@ -178,9 +165,18 @@ int __fastcall TTestForm::IsHeaderInGrid( TStringGrid *Grid, std::string String 
 
 	return Result;
 }
-
+//---------------------------------------------------------------------------
+void __fastcall TTestForm::OutputGrid1ButtonClick(TObject *Sender)
+{
+	// Outputs Grid 1
+	TDataTable Grid1Data;
+	LoadTable( DataGrid1, &Grid1Data );
+	PopulateOutputGrid( OutputGrid, &Grid1Data );
+}
+//---------------------------------------------------------------------------
 void __fastcall TTestForm::Output1Plus2ButtonClick(TObject *Sender)
 {
+    // outputs Grid 1 + Grid 2 in Output
 	TDataTable Grid1;
 	TDataTable Grid2;
 	LoadTable( DataGrid1, &Grid1 );
@@ -189,9 +185,9 @@ void __fastcall TTestForm::Output1Plus2ButtonClick(TObject *Sender)
 	PopulateOutputGrid( OutputGrid, &Grid2 );
 }
 //---------------------------------------------------------------------------
-
 void __fastcall TTestForm::SetUnionButtonClick(TObject *Sender)
 {
+	// outputs the union of Grid 1 + Grid 2 in Output
 	TDataTable Grid1;
 	TDataTable Grid2;
 	TDataTable Grid3;
@@ -201,9 +197,9 @@ void __fastcall TTestForm::SetUnionButtonClick(TObject *Sender)
 	PopulateOutputGrid( OutputGrid, &Grid3 );
 }
 //---------------------------------------------------------------------------
-
 void __fastcall TTestForm::SetDifferencesButtonClick(TObject *Sender)
 {
+	// outputs the differnce of Grid 1 + Grid 2 in Output
 	TDataTable Grid1;
 	TDataTable Grid2;
 	TDataTable Grid3;
@@ -213,9 +209,9 @@ void __fastcall TTestForm::SetDifferencesButtonClick(TObject *Sender)
 	PopulateOutputGrid( OutputGrid, &Grid3 );
 }
 //---------------------------------------------------------------------------
-
 void __fastcall TTestForm::IntersectionButtonClick(TObject *Sender)
 {
+	// outputs the Intersection of Grid 1 + Grid 2 in Output
 	TDataTable Grid1;
 	TDataTable Grid2;
 	TDataTable Grid3;
