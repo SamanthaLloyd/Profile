@@ -41,8 +41,6 @@ private:	// User declarations
 	void __fastcall LoadTable( TStringGrid *Grid, TDataTable *Table);
 	void __fastcall PopulateOutputGrid( TStringGrid *OutputGrid, TDataTable *OutputTable );
 	int __fastcall IsHeaderInGrid( TStringGrid *Grid, std::string String );
-
-	TDataTable VirtualTable;
 public:		// User declarations
 	__fastcall TTestForm(TComponent* Owner);
 };
